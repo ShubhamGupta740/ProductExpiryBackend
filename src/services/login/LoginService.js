@@ -1,33 +1,36 @@
 const { STRINGS } = require("../../utils/Strings");
-const {body,validationResult, query} =  require('express-validator');
+const { body, validationResult, query } = require("express-validator");
 const { getErrorModel } = require("../../utils/Utils");
 
 var ROUTES = require("../../api-routes/Routes").ROUTES;
-var LoginServiceProvider = require('./LoginServiceProvider').LoginServiceProvider;
+var LoginServiceProvider =
+  require("./LoginServiceProvider").LoginServiceProvider;
 
+var LoginService = function (app) {
+  let loginServiceProvider = new LoginServiceProvider();
 
+  app.post(
+    ROUTES.LOGIN,
+    body(
+      ["emailId", "password"],
+      STRINGS.PLEASE_SEND_THE_DATA_IN_CORRECT_FORMAT
+    ).exists(),
+    (req, res) => {
+      const errors = validationResult(req);
 
-var LoginService  = function(app){
-    let loginServiceProvider = new LoginServiceProvider();
+      if (!errors.isEmpty()) {
+        return res.status(400).json(getErrorModel(errors.array()));
+      }
 
-    app.post(ROUTES.LOGIN,
-        body(['emailId','password'],STRINGS.PLEASE_SEND_THE_DATA_IN_CORRECT_FORMAT).exists(),
-        (req,res)=>{
-                const errors = validationResult(req);
+      loginServiceProvider.login(function (error, loginResponse) {
+        if (error != null) {
+          res.send(error);
+        } else {
+          res.send(loginResponse);
+        }
+      }, req.body);
+    }
+  );
+};
 
-                if(!errors.isEmpty()){
-                    return res.status(400).json(getErrorModel(errors.array()))
-                }
-                
-                    loginServiceProvider.login(function(error,loginResponse){
-                                if(error!=null){
-                                    res.send(error)
-                                }
-                                else{
-                                    res.send(loginResponse)
-                                }
-                    },req.body)
-        })
-}
-
-exports.LoginService= LoginService;
+exports.LoginService = LoginService;
