@@ -11,7 +11,7 @@ var LoginService  = function(app){
     let loginServiceProvider = new LoginServiceProvider();
 
     app.post(ROUTES.LOGIN,
-        body(['email','password'],STRINGS.PLEASE_SEND_THE_DATA_IN_CORRECT_FORMAT).exists(),
+        body(['emailId','password'],STRINGS.PLEASE_SEND_THE_DATA_IN_CORRECT_FORMAT).exists(),
         (req,res)=>{
                 const errors = validationResult(req);
 

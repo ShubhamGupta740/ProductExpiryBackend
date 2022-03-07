@@ -38,7 +38,7 @@ var getErrorResponse = function getErrorResponse(error,message){
 
 var getTokenKey = function getTokenKey(){
 
-    return 'bulkMailerTokenKey-12345';
+    return 'productExpiryTokenKey-12345';
 }
 
 exports.getSuccessModel=getSuccessModel;

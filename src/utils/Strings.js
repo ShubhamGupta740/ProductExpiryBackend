@@ -6,7 +6,16 @@ const STRINGS = {
     RECORD_NOT_FOUND: 'Record Not found',
     PLEASE_TRY_AFTER_SOMETIME: 'Please try after sometime',
     PLEASE_SEND_VALID_TOKEN: "Please send valid token",
-    PLEASE_SEND_TOKEN:'Please send token'
+    PLEASE_SEND_TOKEN:'Please send token',
+    PLEASE_SEND_THE_VALID_REQUEST_KEY_NOT_FOUND:'please send the valid request.key not found',
+    LOGIN_IN_SUCCESSFULL:"LoginIn Successfull",
+    LOGIN_FAILURE:"Please Send Valid Login Details",
+    USER_DETAILS_ADDED_SUCCESSFULLY:"User details added successfully",
+    ACCOUNT_ALREADY_EXISTS:"User account already exists",
+    PRODUCT_DETAILS_ADDED_SUCCESSFULLY:"Product details added successfully",
+    DETAILS_FETCHED_SUCCESSFULLY:"Details Fetched Successfully",
+    NO_RECORDS_AVAILABLE:"No records available"
+
 }
 
 
