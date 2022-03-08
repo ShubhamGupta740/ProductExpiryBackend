@@ -9,8 +9,8 @@ var AddProductService =
   require("./src/services/addproduct/AddProductService").AddProductService;
 var PushNotificationService =
   require("./src/croneJobs/PushNotificationService").PushNotificationService;
-var UpdateFBTokenService =
-  require("./src/services/updatefbToken/UpdateFBTokenService").UpdateFBTokenService;
+// var UpdateFBTokenService =
+//   require("./src/services/updatefbToken/UpdateFBTokenService").UpdateFBTokenService;
 
 // intialize all the dependencies.
 app.use(bodyParser.json());
@@ -24,7 +24,7 @@ new LoginService(app);
 // new SignUpService(app);
 new AddProductService(app);
 new PushNotificationService(app);
-new UpdateFBTokenService(app);
+// new UpdateFBTokenService(app);
 
 app.get("/test", (req, res) => {
   res.send("hello");
