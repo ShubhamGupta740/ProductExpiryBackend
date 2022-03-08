@@ -7,31 +7,36 @@ var LoginServiceProvider = function () {
 
     this.login = function (callback, body) {
         console.log("body =>>>>", body)
-        let query = `select * from Users where email="${body.email}" and password ="${body.password}"`
-        console.log('query =>>>>',query);
-
-        dbConnection.query(query, function(err,response){
-            if(err) throw err;
-            
-            if(response){
-                if(response.length>0){
-                    const token = jwt.sign({id:response[0].id},getTokenKey());
-                    let successModel = getSuccessModel();
-                        successModel.token=token;
-                successModel.data = response[0];
-                callback(null, successModel)
-                }else{
-                    let errorModel = getErrorModel();
-                    errorModel.message = STRINGS.RECORD_NOT_FOUND;
-                    callback(null,errorModel)    
-                }
-            }
-            else{
-                let errorModel = getErrorModel();
-                errorModel.message = STRINGS.RECORD_NOT_FOUND;
-                callback(null,errorModel)
+        let userRef = dbConnection.collection("Users");
+        userRef
+        .where("emailId","==",body.emailId)
+        .where("password","==",body.password)
+        .get()
+        .then((querySnapshot)=>{
+            let result=[];
+            querySnapshot.forEach((document) => {
+                result.push(document.data());
+            });
+            if(result.length>0){
+                const token = jwt.sign({id:result[0].email},getTokenKey());
+            let successModel=getSuccessModel();
+            successModel.data=result;
+            successModel.message=STRINGS.LOGIN_IN_SUCCESSFULL;
+            successModel.token=token;
+            callback(null,successModel);
+            }else{
+                let errorModel=getErrorModel();
+                errorModel.message=STRINGS.LOGIN_FAILURE;
+                callback(null,errorModel);
             }
         })
+            .catch(error => {
+                console.log("Invalid User");
+                let errorModel=getErrorModel();
+                errorModel.message=STRINGS.LOGIN_FAILURE;
+                callback(null,errorModel);
+            }
+            )
     }
 
 }

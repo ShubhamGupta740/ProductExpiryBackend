@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { STRINGS } = require('../../utils/Strings');
-const { getErrorModel, getTokenKey } = require('../../utils/Utils');
+const { STRINGS } = require('../utils/Strings');
+const { getErrorModel, getTokenKey } = require('../utils/Utils');
 
 const auth = async (req, res, next) => {
     console.log(req.headers)
@@ -28,6 +28,6 @@ const auth = async (req, res, next) => {
     }
 
 
-
+//next();
 }
 exports.auth = auth;
