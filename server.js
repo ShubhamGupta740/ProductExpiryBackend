@@ -3,8 +3,8 @@ var cors = require("cors");
 const express = require("express");
 const app = express();
 var LoginService = require("./src/services/login/LoginService").LoginService;
-// var SignUpService =
-//   require("./src/services/signUp/SignUpService").SignUpService;
+var SignUpService =
+  require("./src/services/signUp/SignUpService").SignUpService;
 var AddProductService =
   require("./src/services/addproduct/AddProductService").AddProductService;
 var PushNotificationService =
@@ -21,7 +21,7 @@ app.use(cors());
 // import and initialize the service
 
 new LoginService(app);
-// new SignUpService(app);
+new SignUpService(app);
 new AddProductService(app);
 new PushNotificationService(app);
 // new UpdateFBTokenService(app);
