@@ -3,14 +3,17 @@ var cors = require("cors");
 const express = require("express");
 const app = express();
 var LoginService = require("./src/services/login/LoginService").LoginService;
-var SignUpService =
-  require("./src/services/signUp/SignUpService").SignUpService;
+// var SignUpService =
+//   require("./src/services/signUp/SignUpService").SignUpService;
 var AddProductService =
   require("./src/services/addproduct/AddProductService").AddProductService;
 var PushNotificationService =
   require("./src/croneJobs/PushNotificationService").PushNotificationService;
 // var UpdateFBTokenService =
 //   require("./src/services/updatefbToken/UpdateFBTokenService").UpdateFBTokenService;
+
+var SignUpService =
+  require("./src/services/signup/SignUpService").SignUpService;
 
 // intialize all the dependencies.
 app.use(bodyParser.json());
