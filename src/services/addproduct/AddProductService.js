@@ -5,7 +5,7 @@ var ROUTES = require("../../api-routes/Routes").ROUTES;
 
 var AddProductService= function(app){
 let addProductProvider=new AddProductProvider();
-    app.post(ROUTES.ADD_PRODUCT, //auth,
+    app.post(ROUTES.ADD_PRODUCT, auth,
         check([
             'emailId',
             'productName',
