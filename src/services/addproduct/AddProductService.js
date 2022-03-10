@@ -19,7 +19,7 @@ let addProductProvider=new AddProductProvider();
             }, req.body)
         });
     
-    app.get(ROUTES.GET_PRODUCT,auth, body("emailId").exists(), (req, res) => {
+    app.get(ROUTES.GET_PRODUCT,auth, (req, res) => {
         addProductProvider.getProduct(function (err, response) {
             res.send(response);
         }, req.body);

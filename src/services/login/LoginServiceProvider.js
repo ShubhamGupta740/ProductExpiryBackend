@@ -18,7 +18,7 @@ var LoginServiceProvider = function () {
                 result.push(document.data());
             });
             if(result.length>0){
-                const token = jwt.sign({id:result[0].email},getTokenKey());
+                const token = jwt.sign({email:result[0].emailId},getTokenKey());
             let successModel=getSuccessModel();
             successModel.data=result;
             successModel.message=STRINGS.LOGIN_IN_SUCCESSFULL;

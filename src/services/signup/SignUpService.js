@@ -10,7 +10,6 @@ var SignUpProvider = require('./SignUpProvider').SignUpProvider;
 var SignUpService = function (app) {
     var signUpProvider = new SignUpProvider();
     app.post(ROUTES.SIGNUP,
-        auth,
         body([ 'userName','emailId', 'password'],
         STRINGS.PLEASE_SEND_THE_VALID_REQUEST_KEY_NOT_FOUND).exists(), (req,res)=>{
                 const errors = validationResult(req);

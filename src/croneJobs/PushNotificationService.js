@@ -5,7 +5,7 @@ var sendNotification = require('../utils/Fcm.js').sendNotification
 var dbConnection = require('../../database').dbConnection
 
 var PushNotificationService = function (app) {
-  var task = cron.schedule("0 */1 * * * *", () => {
+  var task = cron.schedule("0 */50 * * * *", () => {
     let productRef = dbConnection.collection("productList");
     console.log("Hi job started");
 
