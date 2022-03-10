@@ -14,7 +14,8 @@ var AddProductProvider = function () {
             productName:body.productName,
             productType:body.productType,
             expiryDate:body.expiryDate,
-            purchaseDate:body.purchaseDate
+            purchaseDate:body.purchaseDate,
+            noOfReminders:body.noOfReminders
         };
         productRef.doc().set(data)
             .then((response) => {

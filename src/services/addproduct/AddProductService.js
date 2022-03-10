@@ -10,7 +10,8 @@ let addProductProvider=new AddProductProvider();
             'productName',
             'productType',
             'expiryDate',
-            'purchaseDate'
+            'purchaseDate',
+            'noOfReminders'
         ]).exists()
         , (req, res) => {
             addProductProvider.addProduct(function (err, response) {
