@@ -5,7 +5,7 @@ var sendNotification = require("../utils/Fcm.js").sendNotification;
 var dbConnection = require("../../database").dbConnection;
 
 var PushNotificationService = function (app) {
-  var task = cron.schedule("0 */50 * * * *", () => {
+  var task = cron.schedule("0 */1 * * * *", () => {
     let productRef = dbConnection.collection("productList");
     console.log("Hi job started");
 
@@ -19,8 +19,9 @@ var PushNotificationService = function (app) {
         var today = new Date();
         for (let i = 0; i < result.length; i++) {
           var exday = new Date(result[i].expiryDate);
+          console.log(result[i].productName);
           console.log(Math.ceil((exday - today) / (1000 * 3600 * 24)));
-          if (Math.ceil((exday - today) / (1000 * 3600 * 24)) == 7) {
+          if (Math.ceil((exday - today) / (1000 * 3600 * 24)) == 49) {
             filteredResult.push(result[i]);
           }
         }
